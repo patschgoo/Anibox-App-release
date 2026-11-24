@@ -1,0 +1,73 @@
+# Builds and publishes AniBox for Android. Runs on GitHub's servers (free for public repositories).
+#
+# A new version arrives on a branch "upload/v<version>" with the app's source (android/), the README
+# and notes.md. This workflow then:
+#   1. builds the APK from that source (tests first),
+#   2. creates the release v<version> with AniBox.apk, its .sha256 file and the source as a zip
+#      (the app contains libmpv, which is GPL-3.0-or-later, so the source goes with every APK),
+#   3. puts the README and this workflow's state on main and deletes the upload branch.
+name: Release
+
+on:
+  push:
+    branches: ["upload/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GRADLE_OPTS: -Dorg.gradle.jvmargs=-Xmx3g
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Version
+        id: v
+        run: |
+          v="${GITHUB_REF_NAME#upload/v}"
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          grep -q "versionName = \"$v\"" android/app/build.gradle.kts || { echo "::error::branch v$v doesn't match versionName"; exit 1; }
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: "platforms;android-37.1 build-tools;37.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build
+        working-directory: android
+        run: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+          ./gradlew --no-daemon -Pkotlin.compiler.execution.strategy=in-process :app:testDebugUnitTest :app:assembleDebug
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          V: ${{ steps.v.outputs.version }}
+        run: |
+          set -e
+          mkdir out
+          cp android/app/build/outputs/apk/debug/*.apk out/AniBox.apk
+          (cd out && sha256sum AniBox.apk > AniBox.apk.sha256)
+          git archive --format=zip --prefix="AniBox-android-$V-source/" -o "out/AniBox-android-$V-source.zip" HEAD android README.md
+          gh release create "v$V" out/AniBox.apk out/AniBox.apk.sha256 "out/AniBox-android-$V-source.zip" \
+            --title "AniBox for Android $V" --notes-file notes.md --latest --target "$GITHUB_SHA"
+      - name: README to main, remove the upload branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp README.md /tmp/README.md
+          git fetch origin main && git checkout -B main origin/main
+          cp /tmp/README.md README.md
+          git add README.md
+          git diff --cached --quiet || git commit -m "README for $GITHUB_REF_NAME"
+          git push origin main
+          git push origin --delete "$GITHUB_REF_NAME"
