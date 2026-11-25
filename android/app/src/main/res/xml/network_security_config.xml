@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mpv reads each episode from the app's own server on 127.0.0.1 (plain HTTP, never leaves the phone).
+     Everything else stays HTTPS-only; the app makes no other web requests. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">127.0.0.1</domain>
+    </domain-config>
+</network-security-config>
