@@ -1,0 +1,35 @@
+AniBox for Android
+==================
+
+This app's own code: GNU General Public License, version 3.0 (GPL-3.0).
+It must be GPL-3.0 because it links libmpv. Source: the AniBox repository, folder android/.
+
+Parts it includes
+-----------------
+
+mpv and FFmpeg (libmpv-android 1.1.0, dev.jdtech.mpv:libmpv)
+  GNU General Public License 3.0 or later (GPL-3.0-or-later).
+  https://github.com/jarnedemeulemeester/libmpv-android
+  mpv: https://mpv.io  -  FFmpeg: https://ffmpeg.org  -  libass, HarfBuzz, FreeType, FriBidi and
+  the other libraries inside it keep their own (GPL-compatible) licences.
+
+smbj 0.15.0 (network shares)
+  Apache License 2.0. https://github.com/hierynomus/smbj
+
+Bouncy Castle 1.85.2 (crypto for the share sign-in)
+  MIT licence (the Bouncy Castle Licence). https://www.bouncycastle.org
+
+ZXing core 3.5.4 (reading the QR code)
+  Apache License 2.0. https://github.com/zxing/zxing
+
+AndroidX, Jetpack Compose, CameraX, Kotlin and kotlinx.coroutines
+  Apache License 2.0. https://developer.android.com/jetpack  -  https://kotlinlang.org
+
+Sora and Inter (fonts)
+  SIL Open Font License 1.1 (full texts on the next pages).
+
+Code taken from CastApp (same owner, GPL-3.0): the SMB access, the Keystore encryption of
+passwords, the natural sort order and the byte-range web server.
+
+The full text of the GNU GPL 3.0: https://www.gnu.org/licenses/gpl-3.0.html
+The full text of the Apache License 2.0: https://www.apache.org/licenses/LICENSE-2.0
