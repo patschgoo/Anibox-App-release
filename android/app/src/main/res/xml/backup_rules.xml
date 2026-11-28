@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What Android's automatic backup leaves out (Android 11 and older; data_extraction_rules.xml is the same for 12+). -->
+<full-backup-content>
+    <!-- The shares' user names and passwords (encrypted with a Keystore key that a backup can't carry anyway). -->
+    <exclude domain="file" path="signin.json" />
+    <!-- This phone's journal name in the sync folder: another phone restored from this backup must pick its own. -->
+    <exclude domain="file" path="device.json" />
+    <!-- Pictures and the library copy come back with the next sync. -->
+    <exclude domain="file" path="posters" />
+    <exclude domain="file" path="mpv" />
+    <!-- The debug log (addresses, file names): stays on this phone unless you send it yourself. -->
+    <exclude domain="file" path="logs" />
+</full-backup-content>

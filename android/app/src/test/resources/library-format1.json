@@ -1,0 +1,90 @@
+{
+ "format": 1,
+ "app": "AniBox",
+ "version": "1.15.0",
+ "generated": 1763900000.5,
+ "pc": "DESKTOP-TEST",
+ "libraries": [
+  {"name": "Anime", "kind": "anime"},
+  {"name": "TV-Shows", "kind": "series"},
+  {"name": "Movies", "kind": "movies"}
+ ],
+ "shares": [
+  {"id": "s1a2b3c4d", "host": "MEDIABOX", "share": "Drive A", "address": "192.0.2.10"},
+  {"id": "s5e6f7a8b", "host": "MEDIABOX", "share": "Drive B"}
+ ],
+ "prefs": {"audioLangs": ["jpn", "ger"], "subLangs": ["ger", "eng"], "subs": "auto"},
+ "shows": [
+  {
+   "id": "Anime\\Kaze no Tabi",
+   "library": "Anime",
+   "folder": "Kaze no Tabi",
+   "title": "Kaze no Tabi",
+   "originalTitle": "風の旅",
+   "englishTitle": "Journey of the Wind",
+   "sortTitle": "",
+   "mal_id": "99901",
+   "anilist_id": "88801",
+   "type": "TV",
+   "kind": "anime",
+   "atype": "tv",
+   "year": 2021,
+   "description": "A made-up show for the tests.",
+   "genres": ["Adventure", "Fantasy"],
+   "studio": "Studio Example",
+   "poster": "0123456789ab-89abcdef.jpg",
+   "episodeLength": 1440,
+   "episodes": [
+    {"key": "Anime\\Kaze no Tabi\\Kaze no Tabi 01.mkv", "file": "Kaze no Tabi 01.mkv", "season": null, "number": 1, "label": "Episode 1", "title": "The First Wind", "duration": 1420.0, "share": "s1a2b3c4d", "path": "Anime/Kaze no Tabi/Kaze no Tabi 01.mkv"},
+    {"key": "Anime\\Kaze no Tabi\\Kaze no Tabi 02.mkv", "file": "Kaze no Tabi 02.mkv", "season": null, "number": 2, "label": "Episode 2", "title": "", "duration": null, "share": "s1a2b3c4d", "path": "Anime/Kaze no Tabi/Kaze no Tabi 02.mkv"},
+    {"key": "Anime\\Kaze no Tabi\\Kaze no Tabi 03.mkv", "file": "Kaze no Tabi 03.mkv", "season": null, "number": 3, "label": "Episode 3", "title": "", "duration": null, "local": true}
+   ]
+  },
+  {
+   "id": "Anime\\Hoshi Movie",
+   "library": "Anime",
+   "folder": "Hoshi Movie",
+   "title": "Hoshi Movie",
+   "originalTitle": "",
+   "englishTitle": "",
+   "sortTitle": "",
+   "mal_id": null,
+   "anilist_id": null,
+   "type": "MOVIE",
+   "kind": "anime",
+   "atype": "movie",
+   "year": null,
+   "description": "",
+   "genres": [],
+   "studio": "",
+   "poster": "",
+   "episodeLength": null,
+   "episodes": [
+    {"key": "Anime\\Hoshi Movie\\Hoshi Movie.mkv", "file": "Hoshi Movie.mkv", "season": null, "number": null, "label": "Hoshi Movie", "title": "", "duration": null, "share": "s5e6f7a8b", "path": "Anime/Hoshi Movie/Hoshi Movie.mkv"}
+   ]
+  },
+  {
+   "id": "TV-Shows\\Example Street",
+   "library": "TV-Shows",
+   "folder": "Example Street",
+   "title": "Example Street",
+   "originalTitle": "",
+   "englishTitle": "",
+   "sortTitle": "",
+   "mal_id": null,
+   "anilist_id": null,
+   "type": "",
+   "kind": "series",
+   "atype": "",
+   "year": 1999,
+   "description": "",
+   "genres": [],
+   "studio": "",
+   "poster": "",
+   "episodeLength": null,
+   "episodes": [
+    {"key": "TV-Shows\\Example Street\\Season 01\\Example Street S01E01.mkv", "file": "Season 01/Example Street S01E01.mkv", "season": 1, "number": 1, "label": "S01E01", "title": "Pilot", "duration": 2600.4, "share": "s5e6f7a8b", "path": "TV/Example Street/Season 01/Example Street S01E01.mkv"}
+   ]
+  }
+ ]
+}
